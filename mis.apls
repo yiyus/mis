@@ -4,8 +4,8 @@
 
 ⍝ Configuration
 degrees←0                      ⍝ rad or deg in input files
-angle_resolution←15            ⍝ in input files (degrees)
-disorientation_resolution←2.5  ⍝ in output files (degrees)
+angle_resolution←5             ⍝ in input files (degrees)
+disorientation_resolution←1.0  ⍝ in output files (degrees)
 number_of_orientations←5e3     ⍝ for random texture
 output_file_0←'mis0.txt'       ⍝ output file when no ang file is found
 output_file_1←'mis1.txt'       ⍝ output file when 1 ang file is found
@@ -30,7 +30,7 @@ output_file_2←'mis2.txt'       ⍝ output file when 2 ang files are found
 
 ANG←{
     ⍺←0 ⋄ l←(('#'≠⊃¨)⊢⍤/⊢)⊃⎕NGET(⍞←⍵)1                           ⍝ get lines
-    c←⎕CSV⍠2⊢('(^\s+)|(\s+$)' '\s+'⎕R'' ','⊢l)'N'2 0             ⍝ get columns
+    ⍞←' ',≢⊃c←⎕CSV⍠2⊢('(^\s+)|(\s+$)' '\s+'⎕R'' ','⊢l)'N'2 0     ⍝ get columns
     (ea t)←↓⍉{⍺,≢⍵}⌸↓⍉↑(a←○⍺÷180)(⌊0.5+÷⍨)⍣(⍺>0)⊢(○2)|3↑c        ⍝ euler angles and frequencies
     ⍞←' ',≢ea ⋄ (Euler.QE∘(Euler.RD⍣degrees)a×⍣(⍺>0)↓⍉↑ea)t      ⍝ return quaternions and frequencies
 }
