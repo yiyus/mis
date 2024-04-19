@@ -25,7 +25,7 @@ output_file_2←'mis2.txt'       ⍝ output file when 2 ang files are found
     cs,←,(1 1 1)(¯1 1 1)(1 ¯1 1)(1 1 ¯1)∘.QAD 120 240            ⍝                 3-fold around <111>
     cs,←,(1 1 0)(1 0 1)(0 1 1)(1 ¯1 0)(¯1 0 1)(0 1 ¯1)∘.QAD 180  ⍝                 2-fold around <110>
     MC←⊃2×¯2○1⌊cs⌈.(|QD)∘⊂QC⍤QP∘QC ⋄ ML←⌊○⍤⊣÷⍨180×⊢              ⍝ misorientation (cubic symmetry) and level
-    RND←{F←{(1 2○⊂2×○?⍺⍴0)×⊂⍵*÷2} ⋄ UV⍵(F∘(1∘-),F)?⍵⍴0}          ⍝ generate ⍵ random orientations
+    RND←{UV⊃QP/(↓∘.=⍨⍳3)QA¨↓○2×?3⍵⍴0}                            ⍝ generate random orientations
 :EndNamespace
 
 ANG←{
